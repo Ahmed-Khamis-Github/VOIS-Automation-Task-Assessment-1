@@ -25,7 +25,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public void clickSecondItem() {
-        driver.findElements(items).get(1).click();
+        driver.findElements(items).get(4).click();
     }
 
 

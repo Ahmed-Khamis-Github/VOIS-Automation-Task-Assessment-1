@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,13 +25,18 @@ public class AddToCartTest extends TestBase {
         cartObject = new CartPage(driver);
     }
 
-    @Test()
+
+    @Story("Empty Cart")
+    @Description("User verifies that the cart is empty")
+    @Test(description = "Verify empty cart message")
     public void verifyEmptyCartMessage() {
         homeObject.goToCart();
         Assert.assertTrue(cartObject.getEmptyCartMessage().contains("Your Amazon Cart is empty"), "Cart is not empty as expected.");
     }
 
-    @Test()
+    @Story("Search Product")
+    @Description("User searches for a product")
+    @Test(description = "User can search for product")
     public void userCanSearchForProduct() {
         homeObject.searchForProduct("car accessories");
         Assert.assertTrue(searchResultsObject.getSearchedKeywordTxt().contains("car accessories"));
@@ -37,7 +44,9 @@ public class AddToCartTest extends TestBase {
         Assert.assertTrue(productObject.isProductTitlePresent());
     }
 
-    @Test()
+    @Story("Add To Cart")
+    @Description("User adds an item to the cart")
+    @Test(description = "User can add item to cart")
     public void userCanAddItemToCart() {
         homeObject.searchForProduct("car accessories");
         searchResultsObject.clickFirstItem();
@@ -48,7 +57,9 @@ public class AddToCartTest extends TestBase {
         Assert.assertTrue(cartObject.isSubtotalElementPresent());
     }
 
-    @Test
+    @Story("Add Multiple Quantities")
+    @Description("User adds multiple quantities of an item to the cart")
+    @Test(description = "User can add multiple quantities")
     public void userCanAddMultipleQuantities() {
 
         homeObject.searchForProduct("car accessories");
@@ -60,7 +71,9 @@ public class AddToCartTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Remove Product")
+    @Description("User removes a product from the cart")
+    @Test(description = "User can remove product from cart")
     public void userCanRemoveProductFromCart() {
 
         homeObject.searchForProduct("car accessories");
@@ -73,7 +86,9 @@ public class AddToCartTest extends TestBase {
 
     }
 
-    @Test
+    @Story("Add Multiple Items")
+    @Description("User adds multiple items to the cart")
+    @Test(description = "User can add multiple items")
     public void userCanAddMultipleItems() {
 
         homeObject.searchForProduct("car accessories");
@@ -87,7 +102,9 @@ public class AddToCartTest extends TestBase {
     }
 
 
-    @Test()
+    @Story("Empty Search")
+    @Description("User verifies behavior for empty search term")
+    @Test(description = "Verify empty results for missing search term")
     public void verifyEmptyResultsForMissingSearchTerm() {
         String initialUrl = driver.getCurrentUrl();
         homeObject.searchForProduct("");
@@ -96,7 +113,9 @@ public class AddToCartTest extends TestBase {
         Assert.assertEquals(currentUrl, initialUrl, "URL changed after performing empty search.");
     }
 
-    @Test()
+    @Story("Product Details")
+    @Description("User verifies that product details are displayed")
+    @Test(description = "Verify product details are displayed")
     public void verifyProductDetailsAreDisplayed() {
         homeObject.searchForProduct("car accessories");
         searchResultsObject.clickFirstItem();

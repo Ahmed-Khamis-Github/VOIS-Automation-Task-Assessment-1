@@ -22,7 +22,7 @@ public class TestBase {
 
     @BeforeMethod
     @Parameters("browser")
-    public void startDriver(@Optional("edge") String browserName) {
+    public void startDriver(@Optional("chrome") String browserName) throws InterruptedException {
 
         if (browserName.equalsIgnoreCase("chrome")) {
 
@@ -39,23 +39,24 @@ public class TestBase {
         driver.manage().window().setSize(windowSize);
 
         driver.get("https://www.amazon.com/");
+        Thread.sleep(3000);
+        driver.get("https://www.amazon.com/");
+
+
     }
 
 
     @AfterMethod
-    public void closeDriver() {
+    public void tearDown(ITestResult result) throws IOException {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            System.out.println("test failed: " + result.getName());
+            System.out.println("taking screenshot");
+            Helper.takeScreenShot(driver, result.getName());
+        }
         driver.close();
     }
 
 
-    @AfterMethod
 
-    public void screenShotOnFailure(ITestResult result) throws IOException {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            System.out.println("test failed" + result.getName());
-            System.out.println("taking screenshot");
-            Helper.takeScreenShot(driver, result.getName());
 
-        }
-    }
 }
