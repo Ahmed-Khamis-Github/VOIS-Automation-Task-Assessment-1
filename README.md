@@ -23,6 +23,9 @@ This Selenium automation framework is designed to automate tasks on various sect
 - Navigate to the fourth page
 - Select any item and add it to the cart
 
+  ![Output GIF](Output.gif)
+
+
 ## Features
 
 - Built using Maven for easy dependency management and build automation
@@ -32,4 +35,3 @@ This Selenium automation framework is designed to automate tasks on various sect
 - Includes Allure reports for comprehensive test reporting
 - Integration of `takescreenshotclass` for capturing screenshots on test failure
 
-![Output GIF](Output.gif)
