@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,8 @@ public class HomePage extends BasePage {
     private final By cartBtn = By.id("nav-cart") ;
 
     private final By cartCountAssertion = By.id("nav-cart-count") ;
+
+    private final By todayDealsBtn = By.xpath("//a[@href='/gp/goldbox?ref_=nav_cs_gb']") ;
 
 
     public HomePage(WebDriver driver) {
@@ -50,6 +53,18 @@ public class HomePage extends BasePage {
     public String getCartCount()
     {
        return driver.findElement(cartCountAssertion).getText() ;
+    }
+
+
+    public void navigateToTodayDealsPage()
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.elementToBeClickable(todayDealsBtn));
+        WebElement element = driver.findElement(todayDealsBtn);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
     }
 
 

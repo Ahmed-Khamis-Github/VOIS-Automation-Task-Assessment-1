@@ -46,15 +46,15 @@ public class TestBase {
     }
 
 
-    @AfterMethod
-    public void tearDown(ITestResult result) throws IOException {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            System.out.println("test failed: " + result.getName());
-            System.out.println("taking screenshot");
-            Helper.takeScreenShot(driver, result.getName());
-        }
-        driver.close();
-    }
+//    @AfterMethod
+//    public void tearDown(ITestResult result) throws IOException {
+//        if (result.getStatus() == ITestResult.FAILURE) {
+//            System.out.println("test failed: " + result.getName());
+//            System.out.println("taking screenshot");
+//            Helper.takeScreenShot(driver, result.getName());
+//        }
+//        driver.close();
+//    }
 
 
 
