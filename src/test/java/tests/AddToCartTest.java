@@ -48,8 +48,7 @@ public class AddToCartTest extends TestBase {
     @Description("User adds an item to the cart")
     @Test(description = "User can add item to cart")
     public void userCanAddItemToCart() {
-        homeObject.searchForProduct("car accessories");
-        searchResultsObject.clickFirstItem();
+        userCanSearchForProduct() ;
         productObject.addItemToCart();
         Assert.assertTrue(productObject.getProductAddedAlertAssertion().contains("Added to Cart"));
         homeObject.goToCart();
@@ -62,8 +61,7 @@ public class AddToCartTest extends TestBase {
     @Test(description = "User can add multiple quantities")
     public void userCanAddMultipleQuantities() {
 
-        homeObject.searchForProduct("car accessories");
-        searchResultsObject.clickFirstItem();
+        userCanSearchForProduct() ;
         productObject.selectQuantity(4);
         productObject.addItemToCart();
         homeObject.goToCart();
@@ -76,8 +74,7 @@ public class AddToCartTest extends TestBase {
     @Test(description = "User can remove product from cart")
     public void userCanRemoveProductFromCart() {
 
-        homeObject.searchForProduct("car accessories");
-        searchResultsObject.clickFirstItem();
+        userCanSearchForProduct() ;
         productObject.addItemToCart();
         homeObject.goToCart();
         cartObject.removeProductFromCart();
@@ -91,8 +88,8 @@ public class AddToCartTest extends TestBase {
     @Test(description = "User can add multiple items")
     public void userCanAddMultipleItems() {
 
-        homeObject.searchForProduct("car accessories");
-        searchResultsObject.clickFirstItem();
+        userCanSearchForProduct() ;
+
         productObject.addItemToCart();
         homeObject.searchForProduct("car accessories");
         searchResultsObject.clickSecondItem();
@@ -117,8 +114,8 @@ public class AddToCartTest extends TestBase {
     @Description("User verifies that product details are displayed")
     @Test(description = "Verify product details are displayed")
     public void verifyProductDetailsAreDisplayed() {
-        homeObject.searchForProduct("car accessories");
-        searchResultsObject.clickFirstItem();
+        userCanSearchForProduct() ;
+
         Assert.assertTrue(productObject.isProductPricePresent());
         Assert.assertTrue(productObject.isProductTitlePresent());
      }
